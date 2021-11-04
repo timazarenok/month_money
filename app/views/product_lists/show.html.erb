@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Month:</strong>
+  <%= @product_list.month %>
+</p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @product_list.year %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @product_list.value %>
+</p>
+
+<%= link_to 'Edit', edit_product_list_path(@product_list) %> |
+<%= link_to 'Back', product_lists_path %>

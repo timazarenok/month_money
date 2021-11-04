@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @account_item.category %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @account_item.value %>
+</p>
+
+<%= link_to 'Edit', edit_account_item_path(@account_item) %> |
+<%= link_to 'Back', account_items_path %>

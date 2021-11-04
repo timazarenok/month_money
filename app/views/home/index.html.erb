@@ -1,0 +1,29 @@
+<% if notice %>
+  <p id="notice" class="alert alert-info"><%= notice %></p>
+<%end%>
+
+<%= form_for @account_item, html: { class: "form" } do |form| %>
+  <%= form.hidden_field :account_id, value: @account.id %>
+  <%= form.select :category_id, Category.all.map {|category| [category.title, category.id]}, {}, class: "form-select" %>
+  <%= form.number_field :value, class: "form-control" %>
+  <%= form.submit "Add", class: "btn btn-outline-info" %>
+<% end %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Category</th>
+      <th scope="col">Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @account.account_items.each do |account_item| %>
+      <tr>
+        <td><%= account_item.category.title %></td>
+        <td><%= link_to account_item.value, edit_account_item_path(account_item) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h2 class="common-amount"><%= @account.account_items.sum(&:value) %></h2>
