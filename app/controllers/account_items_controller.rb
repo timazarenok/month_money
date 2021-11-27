@@ -1,40 +1,49 @@
 class AccountItemsController < ApplicationController
   before_action :set_account_item, only: %i[ show edit update destroy ]
 
-  # GET /account_items or /account_items.json
   def index
     @account_items = AccountItem.all
   end
 
-  # GET /account_items/1 or /account_items/1.json
   def show
   end
 
-  # GET /account_items/new
   def new
     @account_item = AccountItem.new
   end
 
-  # GET /account_items/1/edit
   def edit
   end
 
-  # POST /account_items or /account_items.json
   def create
-    @account_item = AccountItem.new(account_item_params)
-    @account_item.account_id = params[:account_item][:account_id]
+    @account_item            = AccountItem.new(account_item_params)
+    account_id               = params[:account_item][:account_id]
+    @account_item.account_id = account_id
+
+    account       = Account.find(account_id)
+    account_items = account.account_items
+    similar_item  = account_items.find_by(category_id: account_item_params[:category_id]) 
+    has_similar   = false
+
+    if similar_item
+      has_similar = true
+      similar_item.add_value(account_item_params[:value])
+      similar_item.save
+    else
+      @account_item.save
+    end
+
     respond_to do |format|
-      if @account_item.save
-        format.html { redirect_to root_path, notice: "Account item was successfully created." }
+      if has_similar
+        format.html { redirect_to root_path, notice: "Account item was successfully updated." }
         format.json { render :show, status: :created, location: @account_item }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @account_item.errors, status: :unprocessable_entity }
+        format.html { redirect_to root_path, notice: "Account item was successfully created." }
+        format.json { render :show, status: :created, location: @account_item }
       end
     end
   end
 
-  # PATCH/PUT /account_items/1 or /account_items/1.json
   def update
     respond_to do |format|
       if @account_item.update(account_item_params)
@@ -47,7 +56,6 @@ class AccountItemsController < ApplicationController
     end
   end
 
-  # DELETE /account_items/1 or /account_items/1.json
   def destroy
     @account_item.destroy
     respond_to do |format|
@@ -57,12 +65,10 @@ class AccountItemsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_account_item
       @account_item = AccountItem.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def account_item_params
       params.require(:account_item).permit(:category_id, :value)
     end

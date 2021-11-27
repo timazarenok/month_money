@@ -1,18 +1,105 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- */
+@import "bootstrap";
 
- @import "bootstrap";
+.sidebar {
+  position: fixed;
+  height: 100%;
+  width: 240px;
+  top: 0;
+  left: 0;
+  background-color: #457b9d;
+  padding: 6px 14px;
+}
+
+.sidebar .logo_container .logo {
+  color: white;
+  display: flex;
+  height: 50px;
+  width: 100%;
+  align-items: center;
+}
+
+.logo_container .logo i {
+  font-size: 28px;
+  margin-right: 5px;
+}
+
+.logo_container .logo .logo-name {
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.sidebar #btn {
+  position: absolute;
+  color: white;
+  left: 90%;
+  top: 6px;
+  font-size: 25px;
+  height: 50px;
+  width: 50px;
+  text-align: center;
+  line-height: 50px;
+  transform: translateX(-50%);
+}
+
+.sidebar ul {
+  margin-top: 20px;
+  padding: 0;
+}
+
+.sidebar ul li {
+  position: relative;
+  list-style: none;
+  line-height: 50px;
+  height: 50px;
+  width: 100%;
+  margin: 0 5px;
+}
+
+.sidebar ul li a {
+  color: white;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.4s ease;
+  border-radius: 12px;
+}
+
+.sidebar ul li a:hover {
+  color: #457b9d;
+  background: #fff;
+}
+
+.sidebar ul li a i {
+  height: 50px;
+  min-width: 50px;
+  border-radius: 12px;
+  line-height: 50px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.sidebar ul li .tooltip {
+  position: absolute;
+  height: 35px;
+  width: 122px;
+  background: #fff;
+  box-shadow: 0 5px 10px rgba(0,0,0, 0.2);
+  left: 122px;
+  top: 0;
+  transform: translateY(-50%);
+  border-radius: 6px;
+  line-height: 35px;
+  text-align: center;
+  transition: 0s;
+  opacity: 0;
+  pointer-events: 0;
+}
+
+.sidebar ul li:hover .tooltip {
+  top: 50%;
+  opacity: 1; 
+  transition: all 0.5s ease;
+}
 
 .form {
   width: 300px;
@@ -31,9 +118,69 @@
   margin-bottom: 100px;
 }
 
-.table {
+.alert-info {
+  color: white;
+  background-color: #457b9d;
+  border-color: #457b9d;
+}
+
+.table-block {
+  border-radius: 15px;
+  background-color: white;
   width: 60%;
+  height: 30%;
   margin: auto;
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
+.table-background {
+  position: relative;
+  left: 13%;
+  width: 87%;
+  background-color: #dee5ff;
+  height: 50%;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.table {
+  width: 90%;
+  height: auto;
+  margin: auto;
+  margin-top: 50px;
+}
+
+thead th:first-child {
+  border-radius: 15px 0px 0px 15px;
+}
+
+thead th:last-child {
+  border-radius: 0px 15px 15px 0px;
+}
+
+th {
+  font-size: 17px;
+  padding-left: 15px !important;
+  color: white;
+  margin-bottom: 10px;
+  border-bottom: none;
+  align-items: center;
+  height: 30px;
+  line-height: 30px;
+  background-color: #457b9d !important;
+}
+
+tr {
+  height: 50px;
+  border-bottom: 1px;
+  border-color: #457b9d;
+}
+
+td {
+  text-align: left;
+  height: 50px;
+  padding-left: 15px !important;
 }
 
 .common-amount {

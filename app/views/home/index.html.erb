@@ -1,5 +1,5 @@
 <% if notice %>
-  <p id="notice" class="alert alert-info"><%= notice %></p>
+  <p id="notice" role="alert" class="alert alert-info" aria-live="assertive"><%= notice %></p>
 <%end%>
 
 <%= form_for @account_item, html: { class: "form" } do |form| %>
@@ -9,21 +9,25 @@
   <%= form.submit "Add", class: "btn btn-outline-info" %>
 <% end %>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Category</th>
-      <th scope="col">Value</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @account.account_items.each do |account_item| %>
-      <tr>
-        <td><%= account_item.category.title %></td>
-        <td><%= link_to account_item.value, edit_account_item_path(account_item) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="table-background">
+  <div class="table-block">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Category</th>
+          <th scope="col">Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @account.account_items.each do |account_item| %>
+          <tr>
+            <td><%= account_item.category.title %></td>
+            <td><%= link_to account_item.value, edit_account_item_path(account_item) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
 
 <h2 class="common-amount"><%= @account.account_items.sum(&:value) %></h2>
