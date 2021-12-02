@@ -12,7 +12,9 @@
   </head>
 
   <body>
-    <%= render "layouts/sidebar" %>
+    <% unless request.original_url.include?("/user") %>
+      <%= render "layouts/sidebar" %>
+    <% end %>
     <%= yield %>
   </body>
 </html>

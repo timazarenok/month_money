@@ -6,7 +6,7 @@
   <%= form.hidden_field :account_id, value: @account.id %>
   <%= form.select :category_id, Category.all.map {|category| [category.title, category.id]}, {}, class: "form-select" %>
   <%= form.number_field :value, class: "form-control" %>
-  <%= form.submit "Add", class: "btn btn-outline-info" %>
+  <%= form.submit "Add", class: "btn" %>
 <% end %>
 
 <div class="table-background">

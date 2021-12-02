@@ -13,13 +13,23 @@
         </a>
         <span class="tooltip">Home</span>
       </li>
-      <li>
-        <a href="#">
-          <i class="bx bx-log-out"></i>
-          <span class="links_name">Log out</span>
-        </a>
-        <span class="tooltip">Logout</span>
-      </li>
+      <% if current_user %>
+        <li>
+          <a href="<%= destroy_user_session_path %>">
+            <i class="bx bx-log-out"></i>
+            <span class="links_name">Log out</span>
+          </a>
+          <span class="tooltip">Log out</span>
+        </li>
+      <% else %>
+        <li>
+          <a href="<%= new_user_session_url %>">
+            <i class="bx bx-log-in"></i>
+            <span class="links_name">Log in</span>
+          </a>
+          <span class="tooltip">Log in</span>
+        </li>
+      <% end %>
     </ul>
   </div>
 </div>

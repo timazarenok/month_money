@@ -1,5 +1,19 @@
 @import "bootstrap";
 
+a {
+  text-decoration: none;
+  color: #457b9d;
+}
+
+a:hover{ 
+  color: black;
+}
+
+.form-header {
+  color: #457b9d;
+  margin-bottom: 10px;
+}
+
 .sidebar {
   position: fixed;
   height: 100%;
@@ -136,7 +150,7 @@
 
 .table-background {
   position: relative;
-  left: 13%;
+  left: 240px;
   width: 87%;
   background-color: #dee5ff;
   height: 50%;
@@ -187,4 +201,29 @@ td {
   width: 300px;
   margin: auto;
   margin-top: 50px;
+}
+
+.btn {
+  color: #fff;
+  background-color: #457b9d;
+  border-color: #457b9d;
+  width: 100px;
+}
+
+.btn:hover {
+  color: #457b9d;
+  background-color: #fff;
+  border-color: #457b9d;
+}
+
+select option {
+  font-size: 16px;
+}
+
+.form-select {
+  border-color: #457b9d;
+}
+
+.form-control {
+  border-color: #457b9d;
 }

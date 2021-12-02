@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_02_211800) do
+ActiveRecord::Schema.define(version: 2021_12_02_172418) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,7 +31,9 @@ ActiveRecord::Schema.define(version: 2021_11_02_211800) do
     t.decimal "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
     t.index ["month_id"], name: "index_accounts_on_month_id"
+    t.index ["user_id"], name: "index_accounts_on_user_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -73,9 +75,24 @@ ActiveRecord::Schema.define(version: 2021_11_02_211800) do
     t.index ["month_id"], name: "index_product_lists_on_month_id"
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
   add_foreign_key "account_items", "accounts"
   add_foreign_key "account_items", "categories"
   add_foreign_key "accounts", "months"
+  add_foreign_key "accounts", "users"
   add_foreign_key "product_list_items", "product_categories"
   add_foreign_key "product_list_items", "product_lists"
   add_foreign_key "product_lists", "months"

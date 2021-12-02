@@ -1,7 +1,12 @@
 class HomeController < ApplicationController
+  before_action :authenticate_user!
 
   def index
-    @account = Account.first
-    @account_item = AccountItem.new
+    if current_user
+      @account = Account.find(current_user.account.id)
+      @account_item = AccountItem.new
+    else
+      redirect_to new_user_session_path
+    end
   end
 end
