@@ -36,4 +36,4 @@ ProductCategory.create(title: "Meat")
 ProductCategory.create(title: "Dairy")
 ProductCategory.create(title: "Goodies")
 
-Account.create(month: Month.find_by(title: "November"), year: 2021, value: 0.0)
+Account.create(month: Month.find_by(title: Date::MONTHNAMES[Date.today.month]), year: 2021, value: 0.0)
